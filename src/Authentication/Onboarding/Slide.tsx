@@ -2,14 +2,14 @@ import { View, Text, StyleSheet, Dimensions } from "react-native";
 import React from "react";
 
 interface SlideProps {
-  label: string;
+  title: string;
   right?: boolean;
 }
 
 const { width, height } = Dimensions.get("window");
 export const SLIDE_HIGHT = 0.61 * height;
 
-const Slide = ({ label, right }: SlideProps) => {
+const Slide = ({ title, right }: SlideProps) => {
   const transform = [
     { translateY: (SLIDE_HIGHT - 100) / 2 },
     { translateX: right ? width / 2 - 50 : -width / 2 + 50 },
@@ -18,7 +18,7 @@ const Slide = ({ label, right }: SlideProps) => {
   return (
     <View style={styles.container}>
       <View style={[styles.titleContainer, { transform }]}>
-        <Text style={styles.title}>{label}</Text>
+        <Text style={styles.title}>{title}</Text>
       </View>
     </View>
   );
