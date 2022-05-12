@@ -59,10 +59,10 @@ const Onboarding = () => {
               key={index}
               last={index === slides.length - 1}
               onPress={() => {
-                if(scroll.current){
-                  scroll.current.getNode().scrollTo({
-                    x: width * (index + 1), animated: true,
-                  })
+                if (scroll.current) {
+                  scroll.current
+                    .getNode()
+                    .scrollTo({ x: width * (index + 1), animated: true });
                 }
               }}
               {...{ subtitle, description }}
@@ -81,7 +81,6 @@ const styles = StyleSheet.create({
   },
   slider: {
     height: SLIDE_HIGHT,
-
     borderBottomRightRadius: BORDER_RADIUS,
   },
   footer: {
