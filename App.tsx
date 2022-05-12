@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Onboarding } from "./src/Authentication";
+import { Onboarding, Welcome } from "./src/Authentication";
 import { LoadAssets } from "./src/Components";
 
 const fonts = {
@@ -20,6 +20,10 @@ const AuthenticationNavigator = () => {
       <AuthenticationStack.Screen
         name="Onboarding"
         component={Onboarding}
+      ></AuthenticationStack.Screen>
+      <AuthenticationStack.Screen
+        name="Welcome"
+        component={Welcome}
       ></AuthenticationStack.Screen>
     </AuthenticationStack.Navigator>
   );
