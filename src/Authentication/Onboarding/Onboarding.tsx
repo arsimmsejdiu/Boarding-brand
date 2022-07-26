@@ -3,9 +3,8 @@ import Animated, {
   divide,
   interpolateColors,
   multiply,
-  useValue,
 } from "react-native-reanimated";
-import { onScrollEvent, useScrollHandler } from "react-native-redash";
+import { useScrollHandler } from "react-native-redash";
 import Slide, { SLIDE_HIGHT, BORDER_RADIUS } from "./Slide";
 import Subslide from "./Subslide";
 import Dot from "./Dot";
@@ -17,7 +16,7 @@ const { width } = Dimensions.get("window");
 const Onboarding = () => {
   const scroll = useRef<Animated.ScrollView>(null);
   const { scrollHandler, x } = useScrollHandler();
-  const onScroll = onScrollEvent({ x });
+  // const onScroll = onScrollEvent({ x });
   const backgroundColor = interpolateColors(x, {
     inputRange: slides.map((_, i) => i * width),
     outputColorRange: slides.map((slide) => slide.backgroundColor),

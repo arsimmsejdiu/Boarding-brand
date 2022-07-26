@@ -1,4 +1,4 @@
-import Animated, { interpolate, Extrapolate } from "react-native-reanimated";
+import Animated, { interpolateNode, Extrapolate } from "react-native-reanimated";
 
 interface DotProps {
   index: number;
@@ -6,25 +6,25 @@ interface DotProps {
 }
 
 const Dot = ({ index, currentIndex }: DotProps) => {
-  //   const opacity = interpolate(currentIndex, {
-  //     inputRange: [index - 1, index, index + 1],
-  //     outputRange: [0.5, 1, 0.5],
-  //     extrapolate: Extrapolate.CLAMP,
-  //   });
-  //   const scale = interpolate(currentIndex, {
-  //     inputRange: [index - 1, index, index + 1],
-  //     outputRange: [1, 1.25, 1],
-  //     extrapolate: Extrapolate.CLAMP,
-  //   });
-  //   console.log(opacity);
-  //   console.log(scale);
+  const opacity = interpolateNode(currentIndex, {
+    inputRange: [index - 1, index, index + 1],
+    outputRange: [0.5, 1, 0.5],
+    extrapolateRight: Extrapolate.CLAMP,
+  })
+  const scale = interpolateNode(currentIndex, {
+    inputRange: [index - 1, index, index + 1],
+    outputRange: [1, 1.25, 1],
+    extrapolateRight: Extrapolate.CLAMP,
+  })
 
   return (
     <Animated.View
       style={{
+        opacity,
+        transform: [{ scale }],
         backgroundColor: "#2cb9b0",
-        width: 8,
-        height: 8,
+        width: 6,
+        height: 6,
         borderRadius: 4,
         marginHorizontal: 4,
       }}
@@ -33,3 +33,4 @@ const Dot = ({ index, currentIndex }: DotProps) => {
 };
 
 export default Dot;
+// https://stackoverflow.com/questions/67188575/react-native-reanimated-argument-of-type-animatednodenumber-is-not-assignab

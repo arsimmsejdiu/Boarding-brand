@@ -1,10 +1,15 @@
 import { View, Text, StyleSheet, Dimensions, Image } from "react-native";
 import React from "react";
+import { ImageRequireSource } from "react-native";
 
 interface SlideProps {
   title: string;
   right?: boolean;
-  picture: number
+  picture: {
+    src: ImageRequireSource;
+    width: number;
+    height: number;
+  };
 }
 
 const { width, height } = Dimensions.get("window");
@@ -20,7 +25,14 @@ const Slide = ({ title, right, picture }: SlideProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.underlay}>
-        <Image source={picture} style={styles.picture} />
+        <Image
+          source={picture.src}
+          style={{
+            ...StyleSheet.absoluteFillObject,
+            width: width - BORDER_RADIUS,
+            height: (width - BORDER_RADIUS) * picture.height / picture.width
+          }}
+        />
       </View>
       <View style={[styles.titleContainer, { transform }]}>
         <Text style={styles.title}>{title}</Text>
@@ -44,16 +56,11 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
   },
-  underlay:{
+  underlay: {
     ...StyleSheet.absoluteFillObject,
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
+    alignItems: "center",
   },
-  picture: {
-    ...StyleSheet.absoluteFillObject,
-    borderBottomRightRadius: BORDER_RADIUS,
-    width: undefined,
-    height: undefined,
-  }
 });
 
 export default Slide;
